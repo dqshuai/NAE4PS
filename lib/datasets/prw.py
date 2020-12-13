@@ -69,9 +69,8 @@ class PRW(PersonSearchDataset):
 
     def load_probes(self):
         query_info = osp.join(self.root, 'query_info.txt')
-        with open(query_info, 'rb') as f:
+        with open(query_info, 'r') as f:
             raw = f.readlines()
-
         probes = []
         for line in raw:
             linelist = line.split(' ')

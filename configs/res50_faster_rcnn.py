@@ -13,7 +13,7 @@ def args_faster_rcnn():
     # Data
     parser.add_argument('--dataset',
                         help='training dataset',
-                        default='CUHK-SYSU', type=str,
+                        default='PRW', type=str,
                         choices=['CUHK-SYSU', 'PRW'])
     parser.add_argument('--nw', dest='num_workers',
                         help='number of worker to load data',

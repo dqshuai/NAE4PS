@@ -1,6 +1,6 @@
 import os
 import sys
-import cPickle as pickle
+import pickle
 
 import torch
 import torch.distributed as dist

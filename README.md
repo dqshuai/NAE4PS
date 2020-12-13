@@ -37,25 +37,7 @@ This repository hosts our code for our paper [Norm-Aware Embedding for Efﬁcien
    
 4. Train
    ```bash
-   CUDA_VISIBLE_DEVICES=0 python scripts/train_NAE.py --debug --lr_warm_up -p ./logs/<your_logging_path>/ --batch_size 5 --nw 5 --w_RCNN_loss_bbox 10.0 --epochs 22 --lr 0.003
+   CUDA_VISIBLE_DEVICES=0 python scripts/train_NAE.py --debug --lr_warm_up -p ./logs/prw/ --batch_size 3 --nw 5 --w_RCNN_loss_bbox 10.0 --epochs 22 --lr 0.003
    ```
+python setup.py install [--cuda_ext] [--cpp_ext]
 
-
-
-## Citation
-
-```latex
-@inproceedings{chen2020norm,
-  title={Norm-Aware Embedding for Efficient Person Search},
-  author={Chen, Di and Zhang, Shanshan and Yang, Jian and Schiele, Bernt},
-  booktitle={CVPR},
-  year={2020}
-}
-
-@inproceedings{chen2020hoim,
-      title={Hierarchical Online Instance Matching for Person Search},
-      author={Chen, Di and Zhang, Shanshan and Ouyang, Wanli and Yang, Jian and Schiele, Bernt},
-      booktitle={AAAI},
-      year={2020}
-    }
-```

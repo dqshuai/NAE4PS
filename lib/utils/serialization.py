@@ -1,6 +1,6 @@
 import os
 import os.path as osp
-import cPickle
+import pickle as cPickle
 import json
 import errno
 import numpy as np

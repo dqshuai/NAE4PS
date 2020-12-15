@@ -32,7 +32,7 @@ This repository hosts our code for our paper [Norm-Aware Embedding for Efﬁcien
 
 3. Test
    ```bash
-   CUDA_VISIBLE_DEVICES=0 python scripts/test_NAE.py -p logs/cuhk_sysu/
+   CUDA_VISIBLE_DEVICES=0 python scripts/test_NAE.py -p logs/prw/Dec12_18-53-12_xuyue-PC
    ```
    
 4. Train

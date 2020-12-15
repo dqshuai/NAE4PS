@@ -42,7 +42,6 @@ class PersonSearchDataset(object):
         im_name = sample['im_name']
         img_path = osp.join(self.data_path, im_name)
         img = Image.open(img_path).convert('RGB')
-
         boxes = torch.as_tensor(sample['boxes'], dtype=torch.float32)
         labels = torch.as_tensor(sample['gt_pids'], dtype=torch.int64)
 

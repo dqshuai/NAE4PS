@@ -79,7 +79,7 @@ class PRW(PersonSearchDataset):
                 linelist[2]), float(linelist[3]), float(linelist[4])
             roi = np.array([x, y, x + w, y + h]).astype(np.int32)
             roi = np.clip(roi, 0, None)  # several coordinates are negative
-            im_name = linelist[5][:-2] + '.jpg'
+            im_name = linelist[5][:-1] + '.jpg'
             probes.append({'im_name': im_name,
                            'boxes': roi[np.newaxis, :],
                            # Useless. Can be set to any value.
@@ -94,7 +94,9 @@ class PRW(PersonSearchDataset):
         return int(match)
 
     @staticmethod
-    @jit(forceobj=True)
+    # @jit(forceobj=True)
+    # @jit(nopython=True)
+    # @jit
     def search_performance_calc(gallery_set, probe_set,
                                 gallery_det, gallery_feat, probe_feat,
                                 det_thresh=0.5, gallery_size=-1, ignore_cam_id=True):
@@ -127,7 +129,7 @@ class PRW(PersonSearchDataset):
         accs = []
         topk = [1, 5, 10]
         ret = {'image_root': gallery_set.data_path, 'results': []}
-        for i in xrange(len(probe_set)):
+        for i in range(len(probe_set)):
             y_true, y_score = [], []
             imgs, rois = [], []
             count_gt, count_tp = 0, 0

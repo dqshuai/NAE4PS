@@ -1,4 +1,5 @@
 import os.path as osp
+import os
 import huepy as hue
 import socket
 from datetime import datetime
@@ -23,7 +24,7 @@ from lib.utils.serialization import mkdir_if_missing
 
 
 def main(args, get_model_fn):
-
+    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
     if args.distributed:
         init_distributed_mode(args)
     device = torch.device(args.device)
@@ -49,8 +50,10 @@ def main(args, get_model_fn):
 
     model = get_model_fn(args, training=True,
                          pretrained_backbone=True)
-    model.to(device)
+    # torch.distributed.init_process_group(backend="nccl")
 
+    model.to(device)
+    # model = torch.nn.parallel.DistributedDataParallel(model)
     optimizer = get_optimizer(args, model)
     lr_scheduler = get_lr_scheduler(args, optimizer)
 

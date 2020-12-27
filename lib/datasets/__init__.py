@@ -94,7 +94,7 @@ def get_data_loader(args, train=True):
 
         data_loader = PrefetchDataLoader(
             dataset, batch_sampler=train_batch_sampler, num_workers=args.num_workers,
-            collate_fn=collate_fn)
+            collate_fn=collate_fn,pin_memory=True)
         return data_loader
 
     else:

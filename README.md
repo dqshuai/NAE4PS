@@ -32,12 +32,15 @@ This repository hosts our code for our paper [Norm-Aware Embedding for Efﬁcien
 
 3. Test
    ```bash
-   CUDA_VISIBLE_DEVICES=0 python scripts/test_NAE.py -p logs/prw/Dec12_18-53-12_xuyue-PC
+   CUDA_VISIBLE_DEVICES=0 python scripts/test_NAE.py -p logs/prw/Dec17_14-00-48_xuyue-PC
    ```
    
 4. Train
    ```bash
-   CUDA_VISIBLE_DEVICES=0 python scripts/train_NAE.py --debug --lr_warm_up -p ./logs/prw/ --batch_size 3 --nw 5 --w_RCNN_loss_bbox 10.0 --epochs 22 --lr 0.003
+   CUDA_VISIBLE_DEVICES=0 python scripts/train_NAE.py --debug --lr_warm_up -p ./logs/prw/ --batch_size 3 --nw 5 --w_RCNN_loss_bbox 10.0 --epochs 22 --lr 0.003 --embedding_feat_fuse
+
+ CUDA_VISIBLE_DEVICES=0 python -m torch.distributed.launch --nproc_per_node=1 --master_port 2950 scripts/train_NAE.py --debug --lr_warm_up -p ./logs/prw/ --batch_size 3 --nw 5 --w_RCNN_loss_bbox 10.0 --epochs 22 --lr 0.003 --embedding_feat_fuse --distributed
+
    ```
 python setup.py install [--cuda_ext] [--cpp_ext]
 

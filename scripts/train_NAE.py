@@ -24,7 +24,6 @@ from lib.utils.serialization import mkdir_if_missing
 
 
 def main(args, get_model_fn):
-    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
     if args.distributed:
         init_distributed_mode(args)
     device = torch.device(args.device)

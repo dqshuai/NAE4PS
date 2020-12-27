@@ -235,10 +235,10 @@ def args_faster_rcnn_oim(meta_parser=args_faster_rcnn):
     # sizes
     parser.add_argument('--num_features', type=int, default=256,
                         help='Embedding dimension.')
-    parser.add_argument('--num_pids', type=int, default=5532,
+    parser.add_argument('--num_pids', type=int, default=482,
                         choices=[5532, 482],
                         help='Labeled person ids in each dataset.')
-    parser.add_argument('--num_cq_size', type=int, default=5000,
+    parser.add_argument('--num_cq_size', type=int, default=500,
                         help='Size of circular queue for unlabeled persons')
     parser.add_argument('--oim_scalar', type=float, default=30.0,
                         help='1 / OIM temperature')

@@ -64,26 +64,30 @@ def is_main_process():
 
 
 def init_distributed_mode(args):
-    if 'RANK' in os.environ and 'WORLD_SIZE' in os.environ:
-        args.rank = int(os.environ["RANK"])
-        args.world_size = int(os.environ['WORLD_SIZE'])
-        args.local_rank = int(os.environ['LOCAL_RANK'])
-    elif 'SLURM_PROCID' in os.environ:
-        args.rank = int(os.environ['SLURM_PROCID'])
-        args.local_rank = args.rank % torch.cuda.device_count()
-    else:
-        print('Not using distributed mode')
-        args.distributed = False
-        return
-
+    # if 'RANK' in os.environ and 'WORLD_SIZE' in os.environ:
+    #     args.rank = int(os.environ["RANK"])
+    #     args.world_size = int(os.environ['WORLD_SIZE'])
+    #     args.local_rank = int(os.environ['LOCAL_RANK'])
+    # elif 'SLURM_PROCID' in os.environ:
+    #     args.rank = int(os.environ['SLURM_PROCID'])
+    #     args.local_rank = args.rank % torch.cuda.device_count()
+    # else:
+    #     print('Not using distributed mode')
+    #     args.distributed = False
+    #     return
+    args.rank = 0
+    args.world_size = 1
+    args.local_rank = args.rank % torch.cuda.device_count()
     args.distributed = True
-
+    # args.dist_url = 'tcp//localhost:2345'
+    # import ipdb
+    # ipdb.set_trace()
     torch.cuda.set_device(args.local_rank)
     args.dist_backend = 'nccl'
     print('| distributed init (rank {}): {}'.format(args.rank, args.dist_url))
-    torch.distributed.init_process_group(backend=args.dist_backend, init_method=args.dist_url,
+    torch.distributed.init_process_group(backend=args.dist_backend,init_method=args.dist_url,
                                          world_size=args.world_size, rank=args.rank)
-    torch.distributed.barrier()
+    # torch.distributed.barrier()
     setup_for_distributed(args.rank == 0)
 
 

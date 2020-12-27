@@ -109,7 +109,6 @@ class FasterRCNN_NormAware(GeneralizedRCNN):
                 featmap_names=['feat_res4', 'feat_res5'],
                 in_channels=[1024, 2048],
                 dim=256)
-
         if reid_loss is None:
             reid_loss = OIMLoss(
                 256, num_pids, num_cq_size,
